@@ -1,6 +1,26 @@
 def loop_through_folders():
-    file_name = "1.0"
-    loop_through_files(file_name)
+    number_of_year = 2017
+    number_of_month = 00
+    number_of_day = 00
+    
+    for iterate_years in range(0,2):
+        number_of_year = number_of_year + 1
+        number_of_month = 00
+        
+        for iterate_months in range(0, 12):
+            number_of_month = number_of_month + 1
+            file_name_with_month_and_year = str(number_of_month)+"."+str(number_of_year)
+            filled_file_name_with_month_and_year =  file_name_with_month_and_year.zfill(7)
+            number_of_day = 00
+
+            for iterate_days in range(0,31):
+                number_of_day = number_of_day + 1
+                file_name_with_day_month_and_year = str(number_of_day)+"."+filled_file_name_with_month_and_year
+                filled_file_name_with_day_month_and_year = file_name_with_day_month_and_year.zfill(10)
+
+                print(filled_file_name_with_day_month_and_year)
+    
+    #loop_through_files(file_name)
 
 def loop_through_files(file_name):
     print("File name is: " + file_name)
@@ -20,4 +40,5 @@ def loop_through_files(file_name):
         #print(file_address)
 """ 
 loop_through_folders()
+
 
