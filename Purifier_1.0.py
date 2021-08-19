@@ -26,18 +26,19 @@ def open_files_in_sequence():
                     file_name = folder_address + "/" + city + ".csv"    
                     try:
                         if(open (file_name, "r", encoding="utf-8-sig")):
-                            print("P" + file_name)
-                            print("True")
-
-                            #Read data on the file and pass it to a new function
-                            #New func will purify the data and save it in a new,
-                            #folder and file system containing only purified data.
-                            
+                            extract_data_from_files(file_name)                            
                     except:
-                        print("False")
+                        pass
                         
                     
                 
+def extract_data_from_files(file_name):
+    with open(file_name,"r") as file_data:
+        raw_file_data = file_data.read()
+
+    cleanse_file_data(raw_file_data)
+
+
 
 
 open_files_in_sequence()
