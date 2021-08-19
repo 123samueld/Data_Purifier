@@ -26,17 +26,26 @@ def open_files_in_sequence():
                     file_name = folder_address + "/" + city + ".csv"    
                     try:
                         if(open (file_name, "r", encoding="utf-8-sig")):
-                            extract_data_from_files(file_name)                            
+                            extract_raw_data_from_files(file_name)                            
                     except:
                         pass
                         
                     
                 
-def extract_data_from_files(file_name):
+def extract_raw_data_from_files(file_name):
     with open(file_name,"r") as file_data:
         raw_file_data = file_data.read()
+    identify_valuable_file_data(raw_file_data)
 
-    cleanse_file_data(raw_file_data)
+def identify_valuable_file_data(raw_file_data):
+    #Find hostel name
+    search_term = "ShowAll=1"
+
+    if search_term in raw_file_data:
+        indecies = raw_file_data.index(search_term)
+        print(indecies)
+    #print(raw_file_data[y+11:])
+    #print(x)  
 
 
 
