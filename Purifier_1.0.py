@@ -40,12 +40,12 @@ def extract_raw_data_from_files(file_name):
 def identify_valuable_file_data(raw_file_data):
     #Find hostel name
     search_term = "ShowAll=1"
-
-    if search_term in raw_file_data:
-        indecies = raw_file_data.index(search_term)
-        print(indecies)
-    #print(raw_file_data[y+11:])
-    #print(x)  
+    length_of_search_term =len(search_term)
+    count = 0
+    for i in range(len(raw_file_data)-1):
+        if raw_file_data[i:i+length_of_search_term] == search_term:
+            count += 1
+    print(count)
 
 
 
