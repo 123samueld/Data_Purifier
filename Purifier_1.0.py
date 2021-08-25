@@ -40,23 +40,19 @@ def extract_raw_data_from_files(file_name):
 def identify_valuable_file_data(raw_file_data):
     #Find hostel name
     start_of_name_search_term = "ShowAll=1"
-    end_of_name_search_term = "https://"
+    end_of_name_search_term = "hosteldetails.php"
     length_of_start_search_term =len(start_of_name_search_term)
-    length_of_end_search_term =len(end_of_name_search_term)
     starting_place_counter = 0
     ending_place_counter = 125
     for i in range(0,len(raw_file_data)):
-        start_place =  raw_file_data.index(start_of_name_search_term, starting_place_counter) + 12
-        end_place = raw_file_data.index(end_of_name_search_term, ending_place_counter) - 3
-        #length_of_name = end_place - start_place
+        start_place =  raw_file_data.index(start_of_name_search_term, starting_place_counter) + 11
+        end_place = raw_file_data.index(end_of_name_search_term, ending_place_counter) - 30
         name = raw_file_data[start_place:end_place]
+        length_of_name = len(raw_file_data[start_place:end_place])
         print("The name of the hostel is: "  + name)
-        print(start_place)
-        print(end_place)
-        print(ending_place_counter)
+        print("The length of name is: " + str(length_of_name))
         starting_place_counter = start_place + length_of_start_search_term
         ending_place_counter = start_place + 300
-
 
 
 
