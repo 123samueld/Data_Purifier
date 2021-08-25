@@ -53,8 +53,9 @@ def identify_valuable_file_data(raw_file_data):
         print("The name of the hostel is: "  + name)
         print(start_place)
         print(end_place)
+        print(ending_place_counter)
         starting_place_counter = start_place + length_of_start_search_term
-        ending_place_counter = end_place + length_of_end_search_term
+        ending_place_counter = start_place + 300
 
 
 
