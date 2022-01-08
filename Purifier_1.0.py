@@ -37,7 +37,10 @@ def extract_raw_data_from_files(file_name):
         raw_file_data = file_data.read()
     identify_valuable_file_data(raw_file_data)
 
-def identify_valuable_file_data(raw_file_data):
+def identify_comma_positions(raw_file_data):
+    comma = ","
+
+    """"
     #Find hostel name
     start_of_name_search_term = "ShowAll=1"
     end_of_name_search_term = "hosteldetails.php"
@@ -53,6 +56,7 @@ def identify_valuable_file_data(raw_file_data):
         print("The length of name is: " + str(length_of_name))
         starting_place_counter = start_place + length_of_start_search_term
         ending_place_counter = start_place + 300
+        """
 
 
 
