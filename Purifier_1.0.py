@@ -1,3 +1,6 @@
+from typing import Text
+
+
 def open_files_in_sequence():
     number_of_year = 17
     number_of_month = 00
@@ -35,10 +38,17 @@ def open_files_in_sequence():
 def extract_raw_data_from_files(file_name):
     with open(file_name,"r") as file_data:
         raw_file_data = file_data.read()
-    identify_valuable_file_data(raw_file_data)
+    identify_comma_positions(raw_file_data)
 
 def identify_comma_positions(raw_file_data):
     comma = ","
+    comma_position_counter = 0
+    for i in range(0, len(raw_file_data)):
+        if raw_file_data[i] == comma:
+            print(comma_position_counter)
+            print(raw_file_data[i-10:i+1])
+            
+        comma_position_counter = comma_position_counter + 1
 
     """"
     #Find hostel name
