@@ -56,39 +56,29 @@ def identify_data_block_positions(raw_file_data):
     
     create_data_block_list(comma_position_list, raw_file_data)
 
+
 def create_data_block_list(comma_position_list, raw_file_data):
     data_block_list = []
-    for j in range(0,len(comma_position_list)):
-        if j+1 == len(comma_position_list):
-            start = comma_position_list[j-1]   
-            end = comma_position_list[j]
+    for k in range(0,len(comma_position_list)):
+        if k+1 == len(comma_position_list):
+            start = comma_position_list[k-1]   
+            end = comma_position_list[k]
             break
         else:
-            start = comma_position_list[j]
-            end = comma_position_list[j+1]
+            start = comma_position_list[k]
+            end = comma_position_list[k+1]
         data_block = raw_file_data[start+1:end]
         data_block_list.append(data_block)
-    print(data_block_list[9])
-    print(data_block_list[11])     
-    print(data_block_list[12])
-    print(data_block_list[13])
 
-        
-        
-
+    print(data_block_list[1])
+    print(data_block_list[3])
+    if data_block_list[4][1:8] == "Selling":
+        print(data_block_list[5])
+        print(data_block_list[6])
+    else: 
+        print(data_block_list[4])
+        print(data_block_list[5])
     
-
-
-
-    
-
-
-        
-    
-        
-        
-        
-
 
 
 open_files_in_sequence()
