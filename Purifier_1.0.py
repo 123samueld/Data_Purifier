@@ -1,4 +1,7 @@
+import os
+import os.path
 from typing import Text
+
 
 
 def open_files_in_sequence():
@@ -44,33 +47,47 @@ def identify_data_block_positions(raw_file_data):
     comma = ","
     comma_position_counter = 0
     comma_position_list = []
-    data_block_counter = 0
-    for i in range(200, len(raw_file_data)):
+    #Build comma position list
+    for i in range(0, len(raw_file_data)):
         if raw_file_data[i] == comma:
-            comma_position_list.append(comma_position_counter)
-            print(comma_position_list)            
-            #print(comma_position_counter)
-            #print(raw_file_data[i-10:i+1])
-            
-        comma_position_counter = comma_position_counter + 1
+            comma_position_list.append(comma_position_counter)  
 
-    """"
-    #Find hostel name
-    start_of_name_search_term = "ShowAll=1"
-    end_of_name_search_term = "hosteldetails.php"
-    length_of_start_search_term =len(start_of_name_search_term)
-    starting_place_counter = 0
-    ending_place_counter = 125
-    for i in range(0,len(raw_file_data)):
-        start_place =  raw_file_data.index(start_of_name_search_term, starting_place_counter) + 11
-        end_place = raw_file_data.index(end_of_name_search_term, ending_place_counter) - 30
-        name = raw_file_data[start_place:end_place]
-        length_of_name = len(raw_file_data[start_place:end_place])
-        print("The name of the hostel is: "  + name)
-        print("The length of name is: " + str(length_of_name))
-        starting_place_counter = start_place + length_of_start_search_term
-        ending_place_counter = start_place + 300
-        """
+        comma_position_counter = comma_position_counter + 1
+    
+    create_data_block_list(comma_position_list, raw_file_data)
+
+def create_data_block_list(comma_position_list, raw_file_data):
+    data_block_list = []
+    for j in range(0,len(comma_position_list)):
+        if j+1 == len(comma_position_list):
+            start = comma_position_list[j-1]   
+            end = comma_position_list[j]
+            break
+        else:
+            start = comma_position_list[j]
+            end = comma_position_list[j+1]
+        data_block = raw_file_data[start+1:end]
+        data_block_list.append(data_block)
+    print(data_block_list[9])
+    print(data_block_list[11])     
+    print(data_block_list[12])
+    print(data_block_list[13])
+
+        
+        
+
+    
+
+
+
+    
+
+
+        
+    
+        
+        
+        
 
 
 
