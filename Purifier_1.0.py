@@ -59,26 +59,42 @@ def identify_data_block_positions(raw_file_data):
 
 def create_data_block_list(comma_position_list, raw_file_data):
     data_block_list = []
-    for k in range(0,len(comma_position_list)):
-        if k+1 == len(comma_position_list):
-            start = comma_position_list[k-1]   
-            end = comma_position_list[k]
+    for j in range(0,len(comma_position_list)):
+        if j+1 == len(comma_position_list):
+            start = comma_position_list[j-1]   
+            end = comma_position_list[j]
             break
         else:
-            start = comma_position_list[k]
-            end = comma_position_list[k+1]
+            start = comma_position_list[j]
+            end = comma_position_list[j+1]
         data_block = raw_file_data[start+1:end]
         data_block_list.append(data_block)
 
-    print(data_block_list[1])
-    print(data_block_list[3])
-    if data_block_list[4][1:8] == "Selling":
-        print(data_block_list[5])
-        print(data_block_list[6])
-    else: 
-        print(data_block_list[4])
-        print(data_block_list[5])
-    
+    pull_useful_data_out_of_blocks(data_block_list)
+
+def pull_useful_data_out_of_blocks(data_block_list):
+    data_block_index_for_name = 1
+    data_block_index_for_rating = 3
+    data_block_index_for_alternating = 4
+    data_block_index_for_room = 0
+    data_block_index_for_dorm = 0
+    loop_step_counter = 0
+    for k in range(0, len(data_block_list)):
+        if (loop_step_counter-1) % 8 == 0:
+            print(data_block_list[loop_step_counter])
+            print(data_block_list[loop_step_counter+2])
+            if data_block_list[loop_step_counter+3][1:8] == "Selling":
+                print(data_block_list[loop_step_counter+5])
+                print(data_block_list[loop_step_counter+6])
+                print(data_block_list[loop_step_counter+7])
+                print("Break 5")
+            else:
+                print(data_block_list[loop_step_counter+3])
+                print(data_block_list[loop_step_counter+4])
+                print("Break 4")
+
+        loop_step_counter += 1
+        
 
 
 open_files_in_sequence()
