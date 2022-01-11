@@ -47,6 +47,8 @@ def identify_data_block_positions(raw_file_data):
     comma = ","
     comma_position_counter = 0
     comma_position_list = []
+    data_blocks = raw_file_data.split('", ')
+    """
     #Build comma position list
     for i in range(0, len(raw_file_data)):
         if raw_file_data[i] == comma:
@@ -54,8 +56,8 @@ def identify_data_block_positions(raw_file_data):
 
         comma_position_counter = comma_position_counter + 1
     
-    create_data_block_list(comma_position_list, raw_file_data)
-
+    #create_data_block_list(comma_position_list, raw_file_data)
+"""
 
 def create_data_block_list(comma_position_list, raw_file_data):
     data_block_list = []
