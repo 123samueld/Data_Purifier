@@ -41,58 +41,31 @@ def open_files_in_sequence():
 def extract_raw_data_from_files(file_name):
     with open(file_name,"r") as file_data:
         raw_file_data = file_data.read()
-    identify_data_block_positions(raw_file_data)
+    identify_column_names_and_data_blocks(raw_file_data)
 
-def identify_data_block_positions(raw_file_data):
-    comma = ","
-    comma_position_counter = 0
-    comma_position_list = []
-    data_blocks = raw_file_data.split('", ')
-    """
-    #Build comma position list
-    for i in range(0, len(raw_file_data)):
-        if raw_file_data[i] == comma:
-            comma_position_list.append(comma_position_counter)  
+def identify_column_names_and_data_blocks(raw_file_data):
+    data_blocks = raw_file_data.split('","')
+    column_names = data_blocks[0].split(',')
 
-        comma_position_counter = comma_position_counter + 1
-    
-    #create_data_block_list(comma_position_list, raw_file_data)
-"""
+    pull_useful_data_out_of_blocks(column_names, data_blocks)
 
-def create_data_block_list(comma_position_list, raw_file_data):
-    data_block_list = []
-    for j in range(0,len(comma_position_list)):
-        if j+1 == len(comma_position_list):
-            start = comma_position_list[j-1]   
-            end = comma_position_list[j]
-            break
-        else:
-            start = comma_position_list[j]
-            end = comma_position_list[j+1]
-        data_block = raw_file_data[start+1:end]
-        data_block_list.append(data_block)
 
-    pull_useful_data_out_of_blocks(data_block_list)
 
-def pull_useful_data_out_of_blocks(data_block_list):
-    data_block_index_for_name = 1
-    data_block_index_for_rating = 3
-    data_block_index_for_alternating = 4
-    data_block_index_for_room = 0
-    data_block_index_for_dorm = 0
+def pull_useful_data_out_of_blocks(column_names, data_blocks):
     loop_step_counter = 0
-    for k in range(0, len(data_block_list)):
+    print(column_names)
+    for k in range(0, len(data_blocks)):
         if (loop_step_counter-1) % 8 == 0:
-            print(data_block_list[loop_step_counter])
-            print(data_block_list[loop_step_counter+2])
-            if data_block_list[loop_step_counter+3][1:8] == "Selling":
-                print(data_block_list[loop_step_counter+5])
-                print(data_block_list[loop_step_counter+6])
-                print(data_block_list[loop_step_counter+7])
+            print(data_blocks[loop_step_counter+1])
+            print(data_blocks[loop_step_counter+3])
+            if data_blocks[loop_step_counter+3][1:8] == "Selling":
+                print(data_blocks[loop_step_counter+5])
+                print(data_blocks[loop_step_counter+6])
+                print(data_blocks[loop_step_counter+7])
                 print("Break 5")
             else:
-                print(data_block_list[loop_step_counter+3])
-                print(data_block_list[loop_step_counter+4])
+                print(data_blocks[loop_step_counter+4])
+                print(data_blocks[loop_step_counter+5])
                 print("Break 4")
 
         loop_step_counter += 1
